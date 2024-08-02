@@ -18,47 +18,115 @@ package full_talleres;
 public class Taller1 {
     
     public static void main(String[] args) {
-
-
+       
     }
 
     /* 
      2.	Diseñe un algoritmo e implemente la función Convertir_km_seg que: reciba una velocidad entera en Km/seg 
      y la convierta a metros/seg y a metros/hora. Retorne un string del tipo: ### m/s - ### m/h. Si hay error, 
-     devuelva el string "Error en la conversion"
+     devuelva el string "Error en la conversion" 
     */
-    
+     
+    public static String Convertir_km_seg(int velocidad_kms){
+        try {   
+             float velocidad_ms = 0;
+             float velocidad_mh = 0;
+
+       final int metrosx_km = 1000; // equivalencia de metros y kilometros
+       final int segx_horas = 3600; // equivalencia de segundos y horas
+   
+              velocidad_ms = (velocidad_kms * metrosx_km); 
+              velocidad_mh = (velocidad_kms * segx_horas *metrosx_km);
+                     
+       return velocidad_ms + " m/s - " + velocidad_mh +" m/h ";     
+        } 
+        catch (Exception e) {
+           return "error en la conversion"; 
+        }
+   
+       }
     
 
     /*3. Diseñe un algoritmo e implemente la función Convertir_cm_lt que: reciba una cantidad double expresada en 
     cc (centímetros cúbicos) y devuelva un float con su equivalente en litros. Si hay algún error, retorne 0.
     */
   
-    
+    public static float Convertir_cm_lt(double cc){
+      try {
+         float litros = 0;
 
-  
+         final double litro_to_cc = 1000; //Aquí describimos la equivalencia constante de un litro con respecto a un cm^3
+               litros = (float)(cc/litro_to_cc);
+           return litros;
+
+      } catch (Exception e) {
+         return 0;
+      }
+
+    }
+
    /*4.	Diseñe un algoritmo e implemente la función Convertir_us_cops que reciba una cantidad entera de dólares 
    y devuelva su equivalente en pesos usando una TRM de $4170 pesos por cada dólar. La función recibe enteros
    y devuelve enteros, pueden ser grandes. Si hay algún error, retorne -1.
    */
+
+  public static int Convertir_us_cops(int USD){
+   try {
+      int total_de_pesos = 0;
+
+      final int UN_DOLAR_A_COP = 4170; // TRM de $4170 pesos por cada dólar
+          total_de_pesos = USD * UN_DOLAR_A_COP;
+
+     return total_de_pesos;
+
+   } catch (Exception e) {
+      return -1;
+   }
+ 
+  }
    
     
-  
-   
    /*5.	Diseñe un algoritmo e implemente la función Convertir_cent_far que recibe la temperatura real en grados 
    centígrados y la devuelve en grados Fahrenheit (averiguar la fórmula) F = 32 + ( 9 * C / 5). Si hay algún error, 
    retorne 0.
    */
 
-          
+   public static double Convertir_cent_far(double gc){
+      try {
+         final double centigrados_a_farenheit = 32 + ((9 * gc) / 5);// ponemos esta fórmula como constante ya que nunca se modificará
+                return centigrados_a_farenheit;
+              
+      } catch (Exception e) {
+         return 0;
+      }
 
-   
+
+   }
+
    /*6.	Diseñe un algoritmo e implemente la función Calcular_segs que recibirá el número de Días, el número de horas, 
    el número de minutos y número segundos como enteros bytes, positivos y devuelva todo en segundos en un entero. 
    Si hay algún error, devuelva -1.
    */
 
-   
+   public static int Calcular_segs(byte dias, byte horas, byte minutos, byte segundos){
+      try {
+         int total_de_segundos = 0;
+
+         final int seg_en_un_dia = 86400;
+         final int seg_en_una_hora = 3600;
+         final int seg_en_un_minuto = 60;
+         final int un_seg = 1;
+              total_de_segundos = ((dias * seg_en_un_dia) + (horas * seg_en_una_hora) + (minutos * seg_en_un_minuto) + (segundos * un_seg));
+
+         return total_de_segundos;      
+
+      } catch (Exception e) {
+         return -1;
+      }
+
+
+   }
+
 
    /*7.	Un usuario tiene un sistema de báscula para pesar camiones. Diseñe un algoritmo e implemente la función 
    Calcular_peso_carga que reciba un float con el peso total del camión cargado en toneladas y otro float con 
@@ -66,13 +134,43 @@ public class Taller1 {
    en un string del tipo: "### kilos - ### toneladas". 
    Si hay algún error, devuelva en un string "Error en la función Calcular_peso_carga"*/
 
-   
+   public static String Calcular_peso_carga(float peso_total,float peso_sin_carga){
+      try {
+          float peso_de_la_carga_en_toneladas = 0;
+                peso_de_la_carga_en_toneladas = peso_total - peso_sin_carga;
+         float peso_en_kg_de_la_carga = peso_de_la_carga_en_toneladas * 1000;
+
+         return peso_en_kg_de_la_carga + " kilos - " + peso_de_la_carga_en_toneladas + " toneladas";
+
+      } catch (Exception e) {
+         return "Error en la función Calcular_peso_carga";
+      }
+
+
+   }
+
 
    /*8.	Diseñe un algoritmo e implemente la función Calcular_horasxviaje que calcule y devuelva un float con las horas  
    necesarias para alcanzar un destino que es recibido en un string, además de un short con la distancia en kms
    otro dato short que es la velocidad  promedio que alcanzará también el vehículo en kilómetros/hora.  
    Si hay algún error, devuelva -1.
    */
+
+   public static float Calcular_horasxviaje(String Destino, short distancia_km, short velocidad_promedio_kmh){
+      try {
+         float horas_para_el_destino = 0;
+        
+           final float  tiempo = (distancia_km /velocidad_promedio_kmh);
+             horas_para_el_destino = tiempo;
+
+             return horas_para_el_destino;
+                    
+      } catch (Exception e) {
+         return -1;
+      }
+
+
+   }
 
   
    
@@ -86,9 +184,28 @@ public class Taller1 {
    
    Si hay algún error, devuelva -1.*/
 
-   
-   
-   
+   public static float Calcular_combustible(int ruta_1, int ruta_2, int ruta_3, int ruta_4){
+      try {
+         float cantidad_total_de_combustible = 0; //inicializamos variable de retorno
+
+         //declaramos las constantes que siempre tiene el avión del piloto
+         final float  constante_de_gasto_vuelo = (float) (0.2 / 60.8); //0.2 toneladas / 60.8 km
+         final float despegue = (float)1.2;
+         final float aterrizaje =  (float)0.4;
+               
+             cantidad_total_de_combustible = ((4*(despegue + aterrizaje)) + 
+            (ruta_1 * constante_de_gasto_vuelo) + (ruta_2 * constante_de_gasto_vuelo)+
+            (ruta_3 * constante_de_gasto_vuelo) + (ruta_4 * constante_de_gasto_vuelo));
+
+         return cantidad_total_de_combustible;
+
+      } catch (Exception e) {
+         return -1;
+      }
+
+   }
+
+
    /*10. Diseñe un algoritmo e implemente la función Calcular_peso_luna que recibe un byte con el peso en la tierra en kilos
    y devuelve un double el equivalente de ese peso en la luna en Newtons. Utilice las siguientes fórmulas.
    peso_tierra_new = peso_kilos * 9.81m/s2
@@ -96,7 +213,23 @@ public class Taller1 {
    
    Si hay algún error, devuelva 0.
    */
-   
-   
+
+   public static double Calcular_peso_luna(byte peso_tierra){
+    try {
+        double peso_lunaN = 0;
+        final float gravedad = 9.81f;
+        final float numero = 0.165f;
+
+        double peso_tierra_new = peso_tierra * gravedad;
+              peso_lunaN = peso_tierra_new * numero;
+
+        return peso_lunaN;
+
+    } catch (Exception e) {
+        return 0;
+    }
+
+   }
+
    
 }
